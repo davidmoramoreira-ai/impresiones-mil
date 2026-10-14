@@ -1,0 +1,739 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Hace que el ancho incluya el borde y el padding */
+}
+
+
+/* =========================================
+   CONFIGURACIÓN GLOBAL
+   ========================================= */
+body {
+    display: flex;                             /* Activa el diseño flexible */
+    flex-direction: column;                    /* Alinea los elementos uno debajo de otro */
+    align-items: center;                              /* Centra los elementos horizontalmente */
+    min-height: 100vh;                           /* Asegura que el cuerpo ocupe al menos el alto de la pantalla */
+    margin: 0;                                    /* Elimina márgenes por defecto del navegador */                         
+    background-color: #4A5A73;                    /* Define el color de fondo azul grisáceo */
+    color: white;                                  /* Define el color de texto general como blanco */
+    font-family: 'Montserrat', sans-serif;        /* Aplica la fuente Montserrat */
+    overflow-x: hidden;                            /* Evita que aparezca una barra de desplazamiento horizontal */
+    width: 100%;
+}
+
+/* =========================================
+   CABECERA (HEADER) Y LOGO
+   ========================================= */
+.header-title-centered {
+    position: absolute;      /* Lo saca del flujo normal para centrarlo respecto al header */
+    left: 50%;               /* Lo mueve al 50% de la izquierda */
+    transform: translateX(-50%); /* Lo retrocede la mitad de su propio ancho para un centro perfecto */
+    margin: 0;               /* Quita márgenes por defecto */
+    font-size: 1.8rem;       /* Ajusta el tamaño según tu gusto */
+    color: #E85DA2;          /* Color rosa característico de tu marca */
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    pointer-events: none;    /* Permite que si alguien hace clic, el clic pase a través del texto */
+    z-index: 1;              /* Asegura que esté en una capa visible */
+}
+
+   .main-header {
+
+    width: 100%;               /* La cabecera ocupa todo el ancho */
+    height: 80px;              /* Altura fija de la barra superior */
+    display: flex;             /* Activa flexbox para los elementos internos */
+    align-items: center;       /* Centra verticalmente el menú y el logo */
+    justify-content: space-between; /* Separa el menú a la izquierda y el logo a la derecha */
+    padding: 0 30px;           /* Espacio interno a los lados */
+    background-color: #111;    /* Fondo negro sólido */
+    position: fixed;           /* Mantiene la barra fija arriba al hacer scroll */
+    top: 0;                    /* La pega al borde superior */
+    left: 0;                   /* La pega al borde izquierdo */
+    z-index: 1000;             /* Asegura que esté por encima de todo el contenido */
+    box-sizing: border-box;    /* Incluye el padding en el cálculo del ancho total */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Añade una sombra sutil bajo la barra */
+}
+
+.menu-icon {
+    font-size: 35px;           /* Tamaño del icono de tres líneas */
+    cursor: pointer;           /* Cambia el cursor a "mano" al pasar por encima */
+    color: #4ADE80;            /* Color verde para el icono del menú */
+    transition: 0.3s;          /* Suaviza el cambio de color */
+}
+
+.menu-icon:hover {
+    color: #22D3EE;            /* Cambia el menú a cian al pasar el ratón */
+}
+
+.logo-container {
+    height: 100%;              /* Ocupa todo el alto de la cabecera */
+    display: flex;             /* Activa flexbox */
+    align-items: center;       /* Centra el logo verticalmente */
+    width: 55%;
+}
+
+.nav-logo {
+    max-height: 120px;          /* Limita el tamaño del logo para que no se deforme */
+    width: auto;               /* Ajusta el ancho automáticamente */
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2)); /* Brillo blanco suave al logo */
+    transition: transform 0.3s ease; /* Suaviza el efecto de escalado */
+}
+
+.nav-logo:hover {
+    transform: scale(1.05);    /* Agranda un 5% el logo al pasar el ratón */
+}
+
+
+
+/* =========================================
+   CONTENIDO PRINCIPAL (HERO)
+   ========================================= */
+.hero-container {
+    display: flex;             
+    flex-direction: column;    
+    align-items: center;       
+    justify-content: center;   
+    min-height: 90vh;          
+    padding-top: 100px;        
+    padding-bottom: 40px; /* Espacio abajo para que no choque con el fondo */
+    text-align: center;        
+    box-sizing: border-box;    
+    width: 100%;          /* ¡NUEVO! Asegura que herede el ancho total */
+    max-width: 1200px;    /* ¡NUEVO! Evita que se desarme en monitores muy gigantes */
+    margin: 0 auto;       /* ¡NUEVO! Centra el bloque entero en la pantalla */
+}
+
+h1.center {
+    font-size: clamp(2rem, 6vw, 4.5rem); /* Ajuste dinámico: 2rem en celular, hasta 4.5rem en PC */
+    color: #E85DA2;            
+    font-family: 'Poppins', sans-serif; 
+    text-transform: uppercase; 
+    letter-spacing: 2px;       
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); 
+    text-align: center;
+    margin: 30px 0;
+    font-weight: 800;
+    width: 100%;
+    padding: 0 15px; /* Evita que las letras toquen los bordes de la pantalla */
+    word-wrap: break-word; /* Si una palabra es muy larga, la corta correctamente */
+}
+
+/* CONTENEDOR EXTERIOR */
+.slider-container {
+    width: 90%;       /* Cambiar de 100% a 90% en general ayuda a que deje márgenes estéticos en el celular */
+    max-width: 1000px; 
+    margin: 40px auto;
+    overflow: hidden; 
+    border-radius: 30px;
+    position: relative;
+    border: 3px solid #E85DA2;
+}
+
+/* LA PISTA QUE SE MUEVE SOLA */
+.slider-track {
+    display: flex;
+    /* Cada foto mide 250px, hay 8 fotos en total */
+    width: calc(250px * 8); 
+    animation: carrusel-automatico 15s linear infinite;
+}
+
+/* EFECTO: Se detiene si el cliente pone el dedo o el mouse */
+.slider-track:hover {
+    animation-play-state: paused;
+}
+
+/* TAMAÑO DE LAS FOTOS */
+.slide {
+    width: 250px; 
+    flex-shrink: 0;
+}
+
+.slide img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover; /* Evita que la imagen se estire feo */
+}
+
+/* LA ANIMACIÓN */
+@keyframes carrusel-automatico {
+    0% { transform: translateX(0); }
+    /* Se desplaza justo la mitad (las 4 fotos originales) */
+    100% { transform: translateX(calc(-250px * 4)); }
+}
+
+/* ---------------------------------------------------
+   AJUSTE PARA TABLETS Y CELULARES (RESPONSIVE)
+------------------------------------------------------ */
+
+/* --- AJUSTE PARA CELULARES Y TABLETS --- */
+@media (max-width: 768px) {
+    /* ... Tus otras reglas de .features-grid y .feature-item se quedan igual ... */
+
+    /* Ajuste del carrusel para móvil */
+    .slide {
+        width: 180px; 
+    }
+    .slide img {
+        height: 200px;
+    }
+    
+    /* ¡NUEVO! Corregir la pista para que use el nuevo ancho de 180px en celulares */
+    .slider-track {
+        width: calc(180px * 8); 
+    }
+    @keyframes carrusel-automatico {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-180px * 4)); } /* Desplazamiento ajustado a móvil */
+    }
+}
+/* =========================================
+   TARJETAS Y BOTONES (CARDS)
+   ========================================= */
+.cards {
+    display: flex;             /* Activa flexbox */
+    flex-wrap: wrap;           /* Permite que las tarjetas bajen de fila en móviles */
+    justify-content: center;   /* Centra las tarjetas */
+    gap: 25px;                 /* Espacio entre tarjetas */
+    padding: 20px;             /* Espacio interno del contenedor */
+}
+
+
+/* Botones principales del Inicio */
+.hero-container .card {
+    background: linear-gradient(135deg, #22D3EE, #E85DA2); /* Degradado Cian a Rosa */
+    border: none;              /* Quita bordes */
+    border-radius: 50px;       /* Botones totalmente redondeados */
+    width: 260px;              /* Ancho fijo del botón */
+    padding: 20px;             /* Relleno interno */
+    color: white;              /* Texto blanco */
+    font-weight: bold;         /* Texto en negrita */
+    text-decoration: none;     /* Quita subrayado */
+    text-transform: uppercase; /* Mayúsculas */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2); /* Sombra de profundidad */
+    transition: all 0.3s ease; /* Suaviza todas las animaciones */
+    cursor: pointer;           /* Icono de mano al pasar el mouse */
+}
+
+.hero-container .card:hover {
+    transform: translateY(-8px); /* Sube el botón un poco al pasar el mouse */
+    box-shadow: 0 10px 25px rgba(232, 93, 162, 0.4); /* Sombra rosa más intensa */
+    background: linear-gradient(135deg, #E85DA2, #22D3EE); /* Invierte el degradado */
+}
+
+/* =========================================
+   ELEMENTOS FLOTANTES (WHATSAPP)
+   ========================================= */
+.whatsapp-float {
+    position: fixed;           /* Botón fijo en pantalla */
+    width: 60px;               /* Ancho circular */
+    height: 60px;              /* Alto circular */
+    bottom: 30px;              /* Separación de 30px desde abajo */
+    right: 30px;               /* Separación de 30px desde la derecha */
+    background-color: #25d366; /* Color verde oficial de WhatsApp */
+    border-radius: 50%;        /* Lo hace un círculo perfecto */
+    display: flex;             /* Flexbox para centrar el icono */
+    align-items: center;       /* Centra verticalmente el icono */
+    justify-content: center;   /* Centra horizontalmente el icono */
+    box-shadow: 2px 5px 15px rgba(0,0,0,0.3); /* Sombra de elevación */
+    z-index: 1000;             /* Encima de otros elementos */
+    transition: 0.3s;          /* Suaviza animaciones */
+    text-decoration: none;     /* Sin subrayado */
+}
+
+.whatsapp-icon {
+    width: 35px;               /* Tamaño del icono de WhatsApp */
+    height: 35px;              /* Tamaño del icono de WhatsApp */
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);     /* Crece un poco al pasar el ratón */
+    background-color: #128c7e; /* Verde más oscuro al pasar el ratón */
+}
+
+/* --- Estilos para el Logo Central (Inicio) --- */
+.logo-hero-central {
+    margin-bottom: 20px;       /* Espacio bajo el contenedor del logo */
+    animation: fadeIn 1.5s ease-in; /* Aplica la animación al cargar */
+}
+
+.main-logo-big {
+    width: 90%;       /* En móviles ocupará el 90% del ancho del teléfono */
+    max-width: 450px; /* En computadoras no crecerá más de 450px y se mantendrá centrado */
+    height: auto;              
+    filter: drop-shadow(0 0 15px rgba(34, 211, 238, 0.4)); 
+}
+
+/* --- Estilos para la Página de Contacto --- */
+.contacto-wrapper {
+    display: flex;             /* Activa flexbox */
+    flex-wrap: wrap;           /* Se adapta a móviles (columnas bajan) */
+    gap: 40px;                 /* Espacio entre columnas */
+    max-width: 500px;         /* Ancho máximo del contenedor de contacto */
+    margin: 120px auto 40px;   /* Centrado con margen superior para no chocar con el header */
+    padding: 20px;             /* Espacio interno */
+    justify-content: center;   /* Centra las columnas */
+}
+
+.contacto-col {
+    flex: 1;                   /* Ocupan el mismo espacio cada columna */
+    min-width: 320px;          /* Ancho mínimo antes de saltar de fila */
+    background: rgba(255, 255, 255, 0.05); /* Fondo casi transparente */
+    padding: 30px;             /* Espacio interno de la columna */
+    border-radius: 20px;       /* Esquinas redondeadas */
+    border-top: 4px solid #E85DA2; /* Línea rosa decorativa arriba */
+}
+
+.contacto-col h2 {
+    color: #22D3EE;            /* Título secundario en color cian */
+    text-transform: uppercase; /* Mayúsculas */
+    font-size: 1.5rem;         /* Tamaño de letra */
+    margin-bottom: 20px;       /* Espacio bajo el título */
+    
+}
+
+/* Estilo para los campos de entrada */
+input[type="text"], 
+input[type="email"],
+.campo-formulario {
+    display: block;         /* Hace que ocupen su propia línea */
+    width: 70%;            /* Ocupan el ancho del contenedor */
+    max-width: 500px;       /* Tamaño máximo para que se vean estéticos */
+    margin: 15px auto;      /* Centrados y con espacio entre ellos */
+    
+    /* REDONDEZ Y TAMAÑO */
+    padding: 15px 25px;     /* Más altos y con espacio lateral */
+    border-radius: 30px;    /* Bordes redondos */
+    
+    border: 2px solid #E85DA2;
+    font-size: 1.1rem;
+    outline: none;
+}
+
+/* Botón de Enviar Formulario */
+.btn-enviar-diseno {
+    width: 100%;               /* Botón a todo el ancho */
+    padding: 15px;             /* Altura del botón */
+    background: linear-gradient(135deg, #E85DA2, #22D3EE); /* Degradado Rosa a Cian */
+    color: white;              /* Texto blanco */
+    border: none;              /* Sin bordes */
+    border-radius: 10px;       /* Bordes redondeados */
+    font-weight: bold;         /* Texto en negrita */
+    cursor: pointer;           /* Mano al pasar el mouse */
+    text-transform: uppercase; /* Mayúsculas */
+    transition: 0.3s;          /* Suaviza efectos */
+    margin-top: 15px;          /* Espacio superior */
+}
+
+.btn-enviar-diseno:hover {
+    transform: scale(1.03);    /* Efecto de pulso al pasar el ratón */
+    box-shadow: 0 5px 15px rgba(232, 93, 162, 0.4); /* Sombra rosa de realce */
+}
+
+.info-item {
+    margin-bottom: 15px;       /* Espacio entre líneas de información */
+    font-size: 1.1rem;         /* Tamaño de letra legible */
+}
+
+.fb-link {
+    color: #4ADE80;            /* Color verde para el link de Facebook */
+    text-decoration: none;     /* Sin subrayado */
+    font-weight: bold;         /* Negrita */
+}
+
+
+
+/* =========================================
+   catalogo
+   ========================================= */
+.catalogo-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    width: 100%;
+    min-height: 100vh;       /* Hace que el contenedor mida toda la pantalla */
+    padding-top: 80px;       /* Evita que el header tape los botones */
+    box-sizing: border-box;
+}
+
+.categoria-cards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 20px;
+    flex-wrap: wrap; 
+    max-width: 1000px; /* Limita el ancho para que no se estiren demasiado */
+}
+
+.categoria-card {
+    width: 180px;
+    height: 120px; /* Altura ideal para solo texto */
+    background-color: #ffffff;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    border: 2px solid  #E85DA2;
+    color: #333333;
+}
+
+.categoria-texto {
+    color: #333;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+.categoria-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(232, 93, 162, 0.3);
+    border-color: #E85DA2; /* Cambio a rosa de la marca */
+}
+
+.categoria-card:hover .categoria-texto {
+    color: #E85DA2;
+}
+
+
+
+/* =========================================
+   VENTANA MODAL Y OTROS ELEMENTOS
+   ========================================= */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 3000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 20px;
+    width: 85%;
+    max-width: 1000px;
+    text-align: center;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px; right: 30px;
+    color: #4ADE80;
+    font-size: 50px;
+    cursor: pointer;
+}
+
+.grid-imagenes-modal {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.grid-imagenes-modal img {
+    width: 100%;
+    max-width: 450px;
+    object-fit: cover; /* Recorta la imagen para que llene el espacio sin deformarse */
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+/* =========================================
+   MENÚ LATERAL (SIDENAV)
+   ========================================= */
+.sidenav {
+    height: 100%;              /* Ocupa todo el alto de la pantalla */
+    width: 0;                  /* Empieza oculto (ancho cero) */
+    position: fixed;           /* Se queda fijo en la pantalla */
+    z-index: 2000;             /* Por encima de la cabecera incluso */
+    top: 0;                    /* Inicia arriba del todo */
+    left: 0;                   /* Inicia a la izquierda del todo */
+    background-color: #111;    /* Fondo negro para el menú lateral */
+    overflow-x: hidden;        /* Oculta contenido si el menú está cerrado */
+    transition: 0.5s;          /* Tiempo que tarda en abrirse/cerrarse */
+    padding-top: 60px;         /* Espacio arriba para el botón de cerrar */
+}
+
+.sidenav a {
+    padding: 15px 32px;        /* Espacio interno de los enlaces */
+    text-decoration: none;     /* Quita el subrayado de los links */
+    font-size: 22px;           /* Tamaño de letra de las opciones */
+    color: #818181;            /* Color gris para los links */
+    display: block;            /* Hace que cada link ocupe una línea completa */
+    transition: 0.3s;          /* Suaviza el cambio de color en hover */
+}
+
+.sidenav a:hover {
+    color: #E85DA2;            /* Cambia a rosa el link al pasar el ratón */
+}
+
+.sidenav .closebtn {
+    position: absolute;        /* Permite ubicar el botón de cierre libremente */
+    top: 10px;                 /* 10px desde arriba */
+    right: 25px;               /* 25px desde la derecha */
+    font-size: 40px;           /* Tamaño grande para la "X" */
+}
+
+/* Contenedor principal */
+.servicios-container {
+    padding: 80px 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.servicios-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px; /* Más espacio entre tarjetas */
+    justify-content: center;
+    max-width: 1100px;
+}
+
+/* Tarjeta individual */
+.servicio-card {
+    background-color: #ffffff;
+    border-radius: 25px; 
+    padding: 50px 30px 40px 30px; /* Más espacio arriba para el icono */
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    position: relative;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.servicio-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(232, 93, 162, 0.1); /* Sombra con un toque de tu rosa */
+}
+
+/* Círculo decorativo para el icono */
+.icono-circulo {
+    background-color: #fce4ec; /* Rosa muy suave de fondo */
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    margin: -90px auto 20px auto; /* Eleva el círculo sobre el borde */
+    border: 6px solid #f0f0f0; /* Borde del mismo color que el fondo de la página */
+}
+
+/* Títulos con tu rosa marca */
+.servicio-card h3 {
+    color: #E85DA2; 
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+/* Texto descriptivo */
+.servicio-card p {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.info-negocio {
+    color: white; /* O el color que prefieras según tu fondo */
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+    line-height: 1.6;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.intro-texto p, .extra-info p {
+    text-align: justify; /* Alinea el texto por ambos lados */
+    text-justify: inter-word; /* Mejora el espaciado entre palabras */
+    margin-bottom: 15px;
+}
+
+.subtitulo-marca {
+    color: #E85DA2; /* Tu rosa marca */
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.slogan {
+   font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 0px;
+    color: #22D3EE;
+    font-size: 1.8rem !important; /* Más presencia sobre las fotos */
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+}
+
+.features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.feature-item {
+    background: rgba(255, 255, 255, 0.07); /* Fondo ligeramente más claro */
+    color: #E0E6ED;
+    border: 2px solid #E85DA2; /* Tu color rosa marca */
+    border-radius: 25px;
+    padding: 30px 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidad */
+    width: 95%;
+    max-width: 600px;
+    margin: 15px auto;
+}
+
+.feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(196, 60, 237, 0.3); /* Brillo rosa al pasar el mouse */
+}
+
+.feature-item h3 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: #22D3EE;
+    margin-bottom: 10px;
+
+}
+
+.llamado-accion {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 50px;
+    color: #4ADE80;
+}
+
+/* Ajuste para que las tarjetas de botones no queden muy pegadas */
+.cards {
+    margin-top: 0px;
+}
+
+.extra-info{
+    background: rgba(255, 255, 255, 0.07); /* Fondo ligeramente más claro */
+    color: #E0E6ED;
+    padding: 40px;
+    border-radius: 25px;
+    border-left: 4px solid #E85DA2;
+    min-width: 250px;
+    margin: 20px auto; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    border: 2px solid #E85DA2; /* Tu color rosa marca */
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidad */
+}
+
+.extra-info h3{
+    font-size: 2.2rem;
+    color: #22D3EE;
+    margin-bottom: 15px;
+}
+
+.extra-info:hover{
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(232, 93, 162, 0.3); /* Brillo rosa al pasar el mouse */
+}
+
+.intro-texto, .extra-info {
+    font-size: 1.5rem;       /* Letras más grandes como pediste */
+    width: 90%;              /* Se expande hacia los lados */
+    margin: 20px auto;       /* Se centra a sí mismo */
+    line-height: 1.6;
+}
+
+.intro-texto{
+   background: rgba(255, 255, 255, 0.07); /* Fondo ligeramente más claro */
+   color: #E0E6ED;
+    padding: 50px 20px;
+    border-radius: 25px;
+    border-left: 4px solid #E85DA2;
+    min-width: 50px;
+    margin:  0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    border: 2px solid #E85DA2; /* color rosa  */
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidad */
+    justify-content: center;
+    text-align: center;
+}
+
+.intro-texto h3{
+    font-size: 2.2rem;
+    color: #22D3EE;
+    margin-bottom: 15px;
+
+}
+
+.intro-texto:hover{
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(232, 93, 162, 0.3); /* Brillo rosa al pasar el mouse */
+}
+
+.intro-texto p, .extra-info p {
+   font-size: clamp(1rem, 2.5vw, 1.3rem);
+    line-height: 1.5;
+   
+}
+
+.services-list p {
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    line-height: 1.4;
+    word-wrap: break-word; /* Evita que las palabras largas rompan el diseño */
+    margin: 10px 0;
+}
+
+.llamado-accion, .contáctanos-ahora {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4ADE80; /* Color verde que resalta */
+    text-align: center;
+    animation: pulse-text 2s infinite;
+}
+
+@keyframes pulse-text {
+    0% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.02); }
+    100% { opacity: 0.8; transform: scale(1); }
+}
+
+.cuadro-estilo-imagen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* Centra los elementos hijos horizontalmente */
+    width: 95%;             /* Ocupa casi todo el ancho en móviles */
+    max-width: 1300px;      /* En computadoras se expande de lado a lado elegantemente */
+    margin: 0 auto;         /* ¡ESTO ES CLAVE! Centra todo el bloque en la pantalla */
+    padding: 40px 0;
+}
